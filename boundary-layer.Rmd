@@ -55,15 +55,60 @@ Plot Temperature waves as function of time and depth.
 
 blaygpfp %>% ggplot() +
 geom_point(aes(x=datetime,y=TatDpoint025,colour = as.factor(0.025))) +
+  stat_smooth(aes(x = datetime, y = TatDpoint025), se = FALSE) +
 geom_point(aes(x=datetime,y=TatDpoint05,colour = as.factor(0.05))) +
+  stat_smooth(aes(x = datetime, y = TatDpoint05), se = FALSE) +
 geom_point(aes(x=datetime,y=TatDpoint10,colour = as.factor(0.10))) +
+  stat_smooth(aes(x = datetime, y = TatDpoint10), se = FALSE) +
 geom_point(aes(x=datetime,y=TatDpoint20,colour = as.factor(0.20))) +
-  geom_point(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
+stat_smooth(aes(x = datetime, y = TatDpoint20), se = FALSE) +
+geom_point(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
+stat_smooth(aes(x = datetime, y = TatDpoint40), se = FALSE) +
 labs(colour = "Depth")  +
 xlab("Date") + ylab("Temperature")
-# add
+# check if line plot is better
+
+```
+# Just as smooth
+
+
+```{r}
+
+blaygpfp %>% ggplot() +
+
+  stat_smooth(aes(x = datetime, y = TatDpoint025,colour = as.factor(0.025)), se = FALSE) +
+
+  stat_smooth(aes(x = datetime, y = TatDpoint05,colour = as.factor(0.05)), se = FALSE) +
+
+  stat_smooth(aes(x = datetime, y = TatDpoint10,colour = as.factor(0.10)), se = FALSE) +
+
+stat_smooth(aes(x = datetime, y = TatDpoint20,colour = as.factor(0.20)), se = FALSE) +
+
+stat_smooth(aes(x = datetime, y = TatDpoint40,colour = as.factor(0.40)), se = FALSE) +
+labs(colour = "Depth(m")  +
+xlab("Date") + ylab("Temperature (deg C)")+
+ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
+# check if line plot is better
 
 ```
 
+# Redo as line
+
+```{r}
+
+blaygpfp %>% ggplot() +
+geom_line(aes(x=datetime,y=TatDpoint025,colour = as.factor(0.025))) +
+geom_line(aes(x=datetime,y=TatDpoint05,colour = as.factor(0.05))) +
+geom_line(aes(x=datetime,y=TatDpoint10,colour = as.factor(0.10))) +
+geom_line(aes(x=datetime,y=TatDpoint20,colour = as.factor(0.20))) +
+  geom_line(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
+labs(colour = "Depth(m")  +
+xlab("Date") + ylab("Temperature (deg C)")+
+ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
+# check if line plot is better
+
+```
 Vertical soil temperatures at 0435, 0835, 1235,1635,2035 and 0035
+
+
 
