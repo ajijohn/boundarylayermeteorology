@@ -109,6 +109,24 @@ ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")
 
 ```
 Vertical soil temperatures at 0435, 0835, 1235,1635,2035 and 0035
+```{r}
+library(lubridate)
 
 
+```
+
+```{r}
+
+blaygpfp %>% filter(datetime %in% c(as.POSIXct("2015-08-31 04:35:00"))) %>%  ggplot() +
+geom_line(aes(x=datetime,y=TatDpoint025,colour = as.factor(0.025))) +
+geom_line(aes(x=datetime,y=TatDpoint05,colour = as.factor(0.05))) +
+geom_line(aes(x=datetime,y=TatDpoint10,colour = as.factor(0.10))) +
+geom_line(aes(x=datetime,y=TatDpoint20,colour = as.factor(0.20))) +
+  geom_line(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
+labs(colour = "Depth(m")  +
+xlab("Date") + ylab("Temperature (deg C)")+
+ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
+# check if line plot is better
+
+```
 
