@@ -1,0 +1,69 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set( warning=FALSE)
+```
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook to study boundary layer meteorology.
+
+Create the dataset - - From Great Plains Field Prpgram at O'Neil Nebraska
+```{r}
+TatDpoint025 <- c(25.54,24.84,25.77,29.42,33.25,35.25,34.84,32.63,30.07,28.42,27.09,26.09,25.30)
+TatDpoint05 <- c(26.00,25.30,25.35,27.36,30.32,32.63,33.20,32.05,30.20,28.74,27.50,26.60,25.83)
+
+TatDpoint10 <- c(26.42,25.84,25.42,25.98,27.62,29.52,30.62,30.62,29.91,28.84,27.84,27.06,26.40)
+
+TatDpoint20 <- c(26.32,25.97,25.56,25.39,25.57,26.11,26.88,27.41,27.68,27.57,27.22,26.87,26.53)
+
+TatDpoint40 <- c(24.50,24.48,24.36,24.34,24.27,24.24,24.26,24.32,24.47,24.64,24.73,24.78,24.84)
+
+datetime <- c('2015-08-31 04:35','2015-08-31 06:35','2015-08-31 08:35','2015-08-31 10:35','2015-08-31 12:35','2015-08-31 14:35','2015-08-31 16:35','2015-08-31 18:35','2015-08-31 20:35','2015-08-31 22:35','2015-09-01 00:35','2015-09-01 02:35','2015-09-01 04:35')   
+
+blaygpfp <- data.frame(TatDpoint025,TatDpoint05,TatDpoint10,TatDpoint20,TatDpoint40,datetime)
+
+```
+
+check the data
+
+```{r}
+
+#convert the date format
+blaygpfp$datetime<- as.POSIXct(blaygpfp$datetime, "%Y-%m-%d %H:%M",tz="US/Pacific")
+#TODO Take the annnoying date fotmat error out
+str(blaygpfp)
+```
+
+
+Plot the data
+
+```{r}
+plot(blaygpfp)
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+
+```
+
+Plot Temperature waves as function of time and depth.
+
+```{r}
+
+blaygpfp %>% ggplot() +
+geom_point(aes(x=datetime,y=TatDpoint025,colour = as.factor(0.025))) +
+geom_point(aes(x=datetime,y=TatDpoint05,colour = as.factor(0.05))) +
+geom_point(aes(x=datetime,y=TatDpoint10,colour = as.factor(0.10))) +
+geom_point(aes(x=datetime,y=TatDpoint20,colour = as.factor(0.20))) +
+  geom_point(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
+labs(colour = "Depth")  +
+xlab("Date") + ylab("Temperature")
+# add
+
+```
+
+Vertical soil temperatures at 0435, 0835, 1235,1635,2035 and 0035
+
