@@ -69,6 +69,30 @@ xlab("Date") + ylab("Temperature")
 # check if line plot is better
 
 ```
+Better
+
+Plot Temperature waves as function of time and depth.
+
+```{r}
+# reshape it
+blaygpfp_melt <- melt(blaygpfp,id="datetime")
+
+#'data.frame':	65 obs. of  3 variables:
+# $ datetime: POSIXct, format: "2015-08-31 04:35:00" "2015-08-31 06:35:00"  #$ variable: Factor w/ 5 levels "TatDpoint025",..: 1 1 1 1 1 1 1 1 1 1 ...
+# $ value   : num  25.5 24.8 25.8 29.4 33.2 ...
+
+blaygpfp_melt  %>%  ggplot() +
+geom_point(aes(x=datetime,y=value,color=variable))+
+labs(colour = "Depth(m")  +
+xlab("Date") + ylab("Temperature (deg C)")+
+ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
+# check if line plot is better
+
+```
+
+Plot Time waves as function of depth and temperature
+
+
 # Just as smooth
 
 
@@ -118,11 +142,11 @@ library(lubridate)
 ```{r}
 
 blaygpfp %>% filter(datetime %in% c(as.POSIXct("2015-08-31 04:35:00"),as.POSIXct("2015-08-31 08:35:00"),as.POSIXct("2015-08-31 12:35:00"),as.POSIXct("2015-08-31 16:35:00"),as.POSIXct("2015-08-31 20:35:00"),as.POSIXct("2015-09-01 00:35:00"))) %>%  ggplot() +
-geom_line(aes(x=datetime,y=TatDpoint025,colour = as.factor(0.025))) +
-geom_line(aes(x=datetime,y=TatDpoint05,colour = as.factor(0.05))) +
-geom_line(aes(x=datetime,y=TatDpoint10,colour = as.factor(0.10))) +
-geom_line(aes(x=datetime,y=TatDpoint20,colour = as.factor(0.20))) +
-  geom_line(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
+geom_point(aes(x=datetime,y=TatDpoint025,colour = as.factor(0.025))) +
+geom_point(aes(x=datetime,y=TatDpoint05,colour = as.factor(0.05))) +
+geom_point(aes(x=datetime,y=TatDpoint10,colour = as.factor(0.10))) +
+geom_point(aes(x=datetime,y=TatDpoint20,colour = as.factor(0.20))) +
+  geom_point(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
 labs(colour = "Depth(m")  +
 xlab("Date") + ylab("Temperature (deg C)")+
 ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
