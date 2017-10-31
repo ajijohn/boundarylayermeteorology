@@ -91,7 +91,21 @@ ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")
 ```
 
 Plot Time waves as function of depth and temperature
+```{r}
 
+
+#'data.frame':	65 obs. of  3 variables:
+# $ datetime: POSIXct, format: "2015-08-31 04:35:00" "2015-08-31 06:35:00"  #$ variable: Factor w/ 5 levels "TatDpoint025",..: 1 1 1 1 1 1 1 1 1 1 ...
+# $ value   : num  25.5 24.8 25.8 29.4 33.2 ...
+
+blaygpfp_melt  %>%  ggplot() +
+geom_point(aes(x=value,y=value,color=variable))+
+labs(colour = "Depth(m")  +
+xlab("Date") + ylab("Temperature (deg C)")+
+ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
+# check if line plot is better
+
+```
 
 # Just as smooth
 
@@ -154,3 +168,29 @@ ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")
 
 ```
 
+fix the timestamp
+
+```{r}
+library(lubridate)
+#In check_tzones(e1, e2) : 'tzone' attributes are inconsistent
+blaygpfp_melt$datetime <- ymd_hms(blaygpfp_melt$datetime)
+
+#Do increment of the time intervals
+blaygpfp_melt %>% filter(datetime == ymd_hms("2015-09-01 04:35:00")) 
+
+# set the time intervals
+
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 06:35:00"), ]$interval<- 2
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 08:35:00"), ]$interval<- 4
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 10:35:00"), ]$interval<- 6
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 12:35:00"), ]$interval<- 8
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 14:35:00"), ]$interval<- 10
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 16:35:00"), ]$interval<- 12
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 18:35:00"), ]$interval<- 14
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 20:35:00"), ]$interval<- 16
+blaygpfp_melt[datetime == ymd_hms("2015-08-31 22:35:00"), ]$interval<- 18
+blaygpfp_melt[datetime == ymd_hms("2015-09-01 00:35:00"), ]$interval<- 20
+blaygpfp_melt[datetime == ymd_hms("2015-09-01 02:35:00"), ]$interval<- 22
+blaygpfp_melt[datetime == ymd_hms("2015-09-01 04:35:00"), ]$interval<- 24
+
+```
