@@ -151,7 +151,7 @@ ggtitle("Temperatures at various times - function of z and T")
 # check if line plot is better
 ```
 
-# plot 
+# plot for depth
 ```{r}
 library(ggplot2)
 
@@ -174,8 +174,53 @@ p <- ggplot(data = plotampdepthdf, aes(x = depth, y = amp)) +
 p1 <- p + geom_text(x = 0.2, y = 3, label = lm_eqn(plotampdepthdf), parse = TRUE)
 p1
 ```
-# Just as smooth
+With log Amp
+```{r}
+library(ggplot2)
 
+amp <- c(5,3.6,2.5,1.5,.5)
+depth <- c(0.025,0.05,.1,.2,.4)
+
+amp <- log(amp)
+plotampdepthdf <- data.frame(depth,amp)
+
+lm_eqn <- function(df){
+    m <- lm(amp ~ depth, df);
+    eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, 
+         list(a = format(coef(m)[1], digits = 2), 
+              b = format(coef(m)[2], digits = 2), 
+             r2 = format(summary(m)$r.squared, digits = 3)))
+    as.character(as.expression(eq));                 
+}
+p <- ggplot(data = plotampdepthdf, aes(x = depth, y = amp)) +
+            geom_smooth(method = "lm", se=FALSE, color="black", formula = y ~ x) +
+            geom_point()
+p1 <- p + geom_text(x = 0.2, y = .5, label = lm_eqn(plotampdepthdf), parse = TRUE)
+p1
+```
+#TODO - plot the tl vs depth
+```{r}
+library(ggplot2)
+
+lag <- c(5,3.6,2.5,1.5,.5)
+depth <- c(0.025,0.05,.1,.2,.4)
+
+plotampdepthdf <- data.frame(depth,amp)
+
+lm_eqn <- function(df){
+    m <- lm(amp ~ depth, df);
+    eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, 
+         list(a = format(coef(m)[1], digits = 2), 
+              b = format(coef(m)[2], digits = 2), 
+             r2 = format(summary(m)$r.squared, digits = 3)))
+    as.character(as.expression(eq));                 
+}
+p <- ggplot(data = plotampdepthdf, aes(x = depth, y = amp)) +
+            geom_smooth(method = "lm", se=FALSE, color="black", formula = y ~ x) +
+            geom_point()
+p1 <- p + geom_text(x = 0.2, y = 3, label = lm_eqn(plotampdepthdf), parse = TRUE)
+p1
+```
 
 ```{r}
 
