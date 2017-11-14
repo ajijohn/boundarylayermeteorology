@@ -45,7 +45,7 @@ plot(blaygpfp)
 ```{r}
 library(ggplot2)
 library(dplyr)
-
+library(reshape)
 
 ```
 
@@ -145,7 +145,8 @@ blaygpfp_melt$scaleT <- scale(blaygpfp_melt$value)  %>% as.vector()
 blaygpfp_melt  %>% filter(interval %in% c(0, 4,8,12,16,20)) %>%  ggplot() +
 geom_point(aes(x=value,y=depth,color=as.factor(interval),shape=as.factor(interval)))+
    
-geom_line(aes(x=value,y=depth,color=as.factor(interval),shape=as.factor(interval)))+
+#geom_line(aes(x=value,y=depth,color=as.factor(interval),shape=as.factor(interval)))+
+stat_smooth(aes(x=value,y=depth,color=as.factor(interval),shape=as.factor(interval)))+  
 xlab("Temperature(deg C)") + ylab("Depth")+
 ggtitle("Temperatures at various times - function of z and T")  
 # check if line plot is better
