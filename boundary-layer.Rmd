@@ -196,7 +196,32 @@ lm_eqn <- function(df){
 p <- ggplot(data = plotampdepthdf, aes(x = depth, y = amp)) +
             geom_smooth(method = "lm", se=FALSE, color="black", formula = y ~ x) +
             geom_point()
-p1 <- p + geom_text(x = 0.2, y = .5, label = lm_eqn(plotampdepthdf), parse = TRUE)
+p1 <- p + geom_text(x = 0.2, y = .5, label = lm_eqn(plotampdepthdf), parse = TRUE)+
+    xlab("Depth") + ylab("log(amplitude)")
+p1
+```
+#Lets try a polynomial fit
+#lm(y ~ poly(x, 3, raw=TRUE))
+```{r}
+
+amp <- c(5,3.6,2.5,1.5,.5)
+depth <- c(0.025,0.05,.1,.2,.4)
+
+plotampdepthdf <- data.frame(depth,amp)
+
+lm_eqn <- function(df){
+    m <- lm(amp ~ poly(depth,3,raw=TRUE), df);
+    eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, 
+         list(a = format(coef(m)[1], digits = 2), 
+              b = format(coef(m)[2], digits = 2), 
+             r2 = format(summary(m)$r.squared, digits = 3)))
+    as.character(as.expression(eq));                 
+}
+p <- ggplot(data = plotampdepthdf, aes(x = depth, y = amp)) +
+            geom_smooth(method = "lm", se=FALSE, color="black", formula = y ~ x) +
+            geom_point()
+p1 <- p + geom_text(x = 0.2, y = 3, label = lm_eqn(plotampdepthdf), parse = TRUE) +
+    xlab("Depth") + ylab("Amplitude") + ggtitle("Polynomial fit(Order 3)")
 p1
 ```
 #TODO - plot the tl vs depth
@@ -268,16 +293,6 @@ library(lubridate)
 
 ```{r}
 
-blaygpfp %>% filter(datetime %in% c(as.POSIXct("2015-08-31 04:35:00"),as.POSIXct("2015-08-31 08:35:00"),as.POSIXct("2015-08-31 12:35:00"),as.POSIXct("2015-08-31 16:35:00"),as.POSIXct("2015-08-31 20:35:00"),as.POSIXct("2015-09-01 00:35:00"))) %>%  ggplot() +
-geom_point(aes(x=datetime,y=TatDpoint025,colour = as.factor(0.025))) +
-geom_point(aes(x=datetime,y=TatDpoint05,colour = as.factor(0.05))) +
-geom_point(aes(x=datetime,y=TatDpoint10,colour = as.factor(0.10))) +
-geom_point(aes(x=datetime,y=TatDpoint20,colour = as.factor(0.20))) +
-  geom_point(aes(x=datetime,y=TatDpoint40,colour = as.factor(0.40))) +
-labs(colour = "Depth(m")  +
-xlab("Date") + ylab("Temperature (deg C)")+
-ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
-# check if line plot is better
 
 ```
 
