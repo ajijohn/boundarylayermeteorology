@@ -12,9 +12,10 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 $$
 a_b = -(g/T_v) (T_v-T_{vp})
 $$
-Answer:
+Answer
 $$
 
+\begin{aligned}
 \text{Buyoancy (acceleration of air parcel)}
 a_b = ((\rho - \rho_p)/\rho_p) * g\\
 \\
@@ -25,17 +26,55 @@ a_b = ((\rho - \rho_p)/\rho_p) * g\\
 \\
 \\
 \text{Substitute}\\
-a_b = (P/R*T_v - P/R*T_{vp})/(P/R*T_{vp})\\
+a_b = (P/R*T_v - P/R*T_{vp})/(P/R*T_{vp}) * g\\
 
-a_b = ((P/R*T_v)/(P/R*T_{vp})) - (P/R*T_{vp})/(P/R*T_{vp})\\
-a_b = (P/(R*Tv) * (R*T_{vp})/P ) - 1 \\
-a_b = (R^2 * Tv * T_{vp}) - 1
+a_b = ( (P/R)  (1/T_v-1/T_{vp}) / (P/R) *(1/T_{vp}) ) * g\\
+\text { Cancel out (P/R)}\\
+a_b = (1/Tv - 1/T_{vp}) * (T_{vp} * g )\\
+a_b = ( T_{vp} -  T_v / T_v ) * g \\
+a_b = -g * (T_v - T_{vp}/ T_v)\\
 
+\\
+
+Hence,\\
+
+a_b = -(g/T_v) (T_v-T_{vp})
+
+\end{aligned}
+$$
+
+5(b) Considering a small vertical displacement, $\Delta z$, from the equilibrium position of the parcel show that
 
 $$
 
+a_b \cong - (g/T_v) (\delta\Theta_v/\delta z)\Delta z
+$$
+We apply the local static stability concept
+$$
+\text{We start with} \\
+
+a_b = -(g/T_v) (T_v-T_{vp}) \\
+
+T_v = T_{v_o} + (\delta T_v/\delta z) * \Delta z \\
+
+T_{vp}  = T_{v_o} - \Gamma \Delta z \\
+
+\text{On substituting} \\
+
+a_b = -g/T_v ( \delta T_v /\delta z + \Gamma) \Delta z \\
+
+\text{For a nonadiabatic or diabatic atmosphere}, we know \\
+
+\delta \Theta/\delta z
+ \cong \delta T/\delta z + \Gamma \\
+ Hence,\\
+a_b \cong - (g/T_v) (\delta\Theta_v/\delta z)\Delta z
+
+
+
+$$
 ```{r}
-plot(cars)
+
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.

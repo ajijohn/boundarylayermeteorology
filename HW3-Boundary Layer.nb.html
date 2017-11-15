@@ -177,22 +177,56 @@ $(document).ready(function () {
 <p>5(a) - Show that the buoyant acceleration on a parcel of air in a thermally stratified environment is given by</p>
 <p><span class="math display">\[
 a_b = -(g/T_v) (T_v-T_{vp})
-\]</span> Answer: $$</p>
-<p> a_b = ((- _p)/_p) * g\ \ \ = P/R* T_v \ \ <em>p = P/R<em>T_{vp}\ \ \ \ a_b = (P/R</em>T_v - P/R<em>T_{vp})/(P/R</em>T</em>{vp})\</p>
-<p>a_b = ((P/R<em>T_v)/(P/R</em>T_{vp})) - (P/R<em>T_{vp})/(P/R</em>T_{vp})\ a_b = (P/(R<em>Tv) </em> (R<em>T_{vp})/P ) - 1 \ a_b = (R^2 </em> Tv * T_{vp}) - 1</p>
+\]</span> Answer $$</p>
+<span class="math display">\[\begin{aligned}
+\text{Buyoancy (acceleration of air parcel)}
+a_b = ((\rho - \rho_p)/\rho_p) * g\\
+\\
+\text{Density of the environment }\\
+\rho = P/R* T_v  \\ 
+\text{Density of the parcel }\\
+\rho_p = P/R*T_{vp}\\
+\\
+\\
+\text{Substitute}\\
+a_b = (P/R*T_v - P/R*T_{vp})/(P/R*T_{vp}) * g\\
+
+a_b = ( (P/R)  (1/T_v-1/T_{vp}) / (P/R) *(1/T_{vp}) ) * g\\
+\text { Cancel out (P/R)}\\
+a_b = (1/Tv - 1/T_{vp}) * (T_{vp} * g )\\
+a_b = ( T_{vp} -  T_v / T_v ) * g \\
+a_b = -g * (T_v - T_{vp}/ T_v)\\
+
+\\
+
+Hence,\\
+
+a_b = -(g/T_v) (T_v-T_{vp})
+
+\end{aligned}\]</span>
+<p>$$</p>
+<p>5(b) Considering a small vertical displacement, <span class="math inline">\(\Delta z\)</span>, from the equilibrium position of the parcel show that</p>
+<p>$$</p>
+<p>a_b - (g/T_v) (_v/z)z <span class="math display">\[
+We apply the local static stability concept
+\]</span>  \</p>
+<p>a_b = -(g/T_v) (T_v-T_{vp}) \</p>
+<p>T_v = T_{v_o} + (T_v/z) * z \</p>
+<p>T_{vp} = T_{v_o} - z \</p>
+<p> \</p>
+<p>a_b = -g/T_v ( T_v /z + ) z \</p>
+<p>, we know \</p>
+<p>/z T/z + \ Hence,\ a_b - (g/T_v) (_v/z)z</p>
 <p>$$</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Cmd+Option+I</em>.</p>
 <p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayAtIEZvciBIVyAzIC0gQm91bmRhcnkgTGF5ZXIiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rIGZvciBleHBsb3JpbmcgdGVtcGVyYXR1cmUgYW5kIGh1bWRpdHkgaW4gYm91bmRhcnkgbGF5ZXIuIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgo1KGEpIC0gU2hvdyB0aGF0IHRoZSBidW95YW50IGFjY2VsZXJhdGlvbiBvbiBhIHBhcmNlbCBvZiBhaXIgaW4gYSB0aGVybWFsbHkgc3RyYXRpZmllZCBlbnZpcm9ubWVudCBpcyBnaXZlbiBieSAKCiQkCmFfYiA9IC0oZy9UX3YpIChUX3YtVF97dnB9KQokJApBbnN3ZXI6CiQkCgpcdGV4dHtCdXlvYW5jeSAoYWNjZWxlcmF0aW9uIG9mIGFpciBwYXJjZWwpfQphX2IgPSAoKFxyaG8gLSBccmhvX3ApL1xyaG9fcCkgKiBnXFwKXFwKXHRleHR7RGVuc2l0eSBvZiB0aGUgZW52aXJvbm1lbnQgfVxcClxyaG8gPSBQL1IqIFRfdiAgXFwgClx0ZXh0e0RlbnNpdHkgb2YgdGhlIHBhcmNlbCB9XFwKXHJob19wID0gUC9SKlRfe3ZwfVxcClxcClxcClx0ZXh0e1N1YnN0aXR1dGV9XFwKYV9iID0gKFAvUipUX3YgLSBQL1IqVF97dnB9KS8oUC9SKlRfe3ZwfSlcXAoKYV9iID0gKChQL1IqVF92KS8oUC9SKlRfe3ZwfSkpIC0gKFAvUipUX3t2cH0pLyhQL1IqVF97dnB9KVxcCmFfYiA9IChQLyhSKlR2KSAqIChSKlRfe3ZwfSkvUCApIC0gMSBcXAphX2IgPSAoUl4yICogVHYgKiBUX3t2cH0pIC0gMQoKCiQkCgpgYGB7cn0KcGxvdChjYXJzKQpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayAtIEZvciBIVyAzIC0gQm91bmRhcnkgTGF5ZXIiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rIGZvciBleHBsb3JpbmcgdGVtcGVyYXR1cmUgYW5kIGh1bWRpdHkgaW4gYm91bmRhcnkgbGF5ZXIuIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgo1KGEpIC0gU2hvdyB0aGF0IHRoZSBidW95YW50IGFjY2VsZXJhdGlvbiBvbiBhIHBhcmNlbCBvZiBhaXIgaW4gYSB0aGVybWFsbHkgc3RyYXRpZmllZCBlbnZpcm9ubWVudCBpcyBnaXZlbiBieSAKCiQkCmFfYiA9IC0oZy9UX3YpIChUX3YtVF97dnB9KQokJApBbnN3ZXIKJCQKClxiZWdpbnthbGlnbmVkfQpcdGV4dHtCdXlvYW5jeSAoYWNjZWxlcmF0aW9uIG9mIGFpciBwYXJjZWwpfQphX2IgPSAoKFxyaG8gLSBccmhvX3ApL1xyaG9fcCkgKiBnXFwKXFwKXHRleHR7RGVuc2l0eSBvZiB0aGUgZW52aXJvbm1lbnQgfVxcClxyaG8gPSBQL1IqIFRfdiAgXFwgClx0ZXh0e0RlbnNpdHkgb2YgdGhlIHBhcmNlbCB9XFwKXHJob19wID0gUC9SKlRfe3ZwfVxcClxcClxcClx0ZXh0e1N1YnN0aXR1dGV9XFwKYV9iID0gKFAvUipUX3YgLSBQL1IqVF97dnB9KS8oUC9SKlRfe3ZwfSkgKiBnXFwKCmFfYiA9ICggKFAvUikgICgxL1Rfdi0xL1Rfe3ZwfSkgLyAoUC9SKSAqKDEvVF97dnB9KSApICogZ1xcClx0ZXh0IHsgQ2FuY2VsIG91dCAoUC9SKX1cXAphX2IgPSAoMS9UdiAtIDEvVF97dnB9KSAqIChUX3t2cH0gKiBnIClcXAphX2IgPSAoIFRfe3ZwfSAtICBUX3YgLyBUX3YgKSAqIGcgXFwKYV9iID0gLWcgKiAoVF92IC0gVF97dnB9LyBUX3YpXFwKClxcCgpIZW5jZSxcXAoKYV9iID0gLShnL1RfdikgKFRfdi1UX3t2cH0pCgpcZW5ke2FsaWduZWR9CiQkCgo1KGIpIENvbnNpZGVyaW5nIGEgc21hbGwgdmVydGljYWwgZGlzcGxhY2VtZW50LCAkXERlbHRhIHokLCBmcm9tIHRoZSBlcXVpbGlicml1bSBwb3NpdGlvbiBvZiB0aGUgcGFyY2VsIHNob3cgdGhhdAoKJCQKCmFfYiBcY29uZyAtIChnL1RfdikgKFxkZWx0YVxUaGV0YV92L1xkZWx0YSB6KVxEZWx0YSB6CiQkCldlIGFwcGx5IHRoZSBsb2NhbCBzdGF0aWMgc3RhYmlsaXR5IGNvbmNlcHQKJCQKXHRleHR7V2Ugc3RhcnQgd2l0aH0gXFwKCmFfYiA9IC0oZy9UX3YpIChUX3YtVF97dnB9KSBcXAoKVF92ID0gVF97dl9vfSArIChcZGVsdGEgVF92L1xkZWx0YSB6KSAqIFxEZWx0YSB6IFxcCgpUX3t2cH0gID0gVF97dl9vfSAtIFxHYW1tYSBcRGVsdGEgeiBcXAoKXHRleHR7T24gc3Vic3RpdHV0aW5nfSBcXAoKYV9iID0gLWcvVF92ICggXGRlbHRhIFRfdiAvXGRlbHRhIHogKyBcR2FtbWEpIFxEZWx0YSB6IFxcCgpcdGV4dHtGb3IgYSBub25hZGlhYmF0aWMgb3IgZGlhYmF0aWMgYXRtb3NwaGVyZX0sIHdlIGtub3cgXFwKClxkZWx0YSBcVGhldGEvXGRlbHRhIHoKIFxjb25nIFxkZWx0YSBUL1xkZWx0YSB6ICsgXEdhbW1hIFxcCiBIZW5jZSxcXAphX2IgXGNvbmcgLSAoZy9UX3YpIChcZGVsdGFcVGhldGFfdi9cZGVsdGEgeilcRGVsdGEgegoKCgokJApgYGB7cn0KCmBgYAoKQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkNtZCtPcHRpb24rSSouCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkNtZCtTaGlmdCtLKiB0byBwcmV2aWV3IHRoZSBIVE1MIGZpbGUpLgo=</div>
 
 
 
