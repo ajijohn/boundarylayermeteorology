@@ -197,7 +197,7 @@ p <- ggplot(data = plotampdepthdf, aes(x = depth, y = amp)) +
             geom_smooth(method = "lm", se=FALSE, color="black", formula = y ~ x) +
             geom_point()
 p1 <- p + geom_text(x = 0.2, y = .5, label = lm_eqn(plotampdepthdf), parse = TRUE)+
-    xlab("Depth") + ylab("log(amplitude)")
+    xlab("Depth") + ylab("log(amplitude)") + ggtitle("Log of Amplitude")
 p1
 ```
 #Lets try a polynomial fit
@@ -208,7 +208,8 @@ amp <- c(5,3.6,2.5,1.5,.5)
 depth <- c(0.025,0.05,.1,.2,.4)
 
 plotampdepthdf <- data.frame(depth,amp)
-
+poly.model <-lm(amp ~ poly(depth,3,raw=TRUE), df)
+summary(poly.model)
 lm_eqn <- function(df){
     m <- lm(amp ~ poly(depth,3,raw=TRUE), df);
     eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, 
@@ -224,6 +225,28 @@ p1 <- p + geom_text(x = 0.2, y = 3, label = lm_eqn(plotampdepthdf), parse = TRUE
     xlab("Depth") + ylab("Amplitude") + ggtitle("Polynomial fit(Order 3)")
 p1
 ```
+# Lets try to plot the predicted 
+```{r}
+
+plm_eqn <- function(df){
+    m <- lm(amp ~ poly(depth,3,raw=TRUE), df);
+    eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, 
+         list(a = format(coef(m)[1], digits = 2), 
+              b = format(coef(m)[2], digits = 2), 
+             r2 = format(summary(m)$r.squared, digits = 3)))
+    as.character(as.expression(eq));                 
+}
+predictedamps <- predict(poly.model,list(depth=plotampdepthdf$depth))
+p <- ggplot(data = plotampdepthdf, aes(x = depth, y = amp)) +
+            geom_point()
+p1 <- p + geom_line(aes(x=depth,y=predictedamps)) +
+     geom_text(x = 0.2, y = 3, label = plm_eqn(plotampdepthdf), parse = TRUE) +
+     xlab("Depth") + ylab("Amplitude") + ggtitle("Predicted with actual")
+p1
+
+```
+
+
 #TODO - plot the tl vs depth
 ```{r}
 library(ggplot2)
@@ -248,8 +271,10 @@ p1 <- p + geom_text(x = 0.2, y = 3, label = lm_eqn(plotampdepthdf), parse = TRUE
 p1
 ```
 
-```{r}
+We need the time at which the maxima occurs, so do the lazy way to get the maxima by installing plotly to get visual cues.
 
+```{r}
+library(plotly)
 blaygpfp %>% ggplot() +
 
   stat_smooth(aes(x = datetime, y = TatDpoint025,colour = as.factor(0.025)), se = FALSE) +
@@ -266,9 +291,10 @@ xlab("Date") + ylab("Temperature (deg C)")+
 ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
 # check if line plot is better
 
+ggplotly()
 ```
 
-# Redo as line
+# Redo as line , but no smoothing 
 
 ```{r}
 
@@ -282,8 +308,27 @@ labs(colour = "Depth(m")  +
 xlab("Date") + ylab("Temperature (deg C)")+
 ggtitle("Soil Temperatures at various depths GPFP (O'Neil Nebraska) ")  
 # check if line plot is better
-
+ggplotly()
 ```
+
+#Depth and time of the temperature
+```{r}
+maxtempat <- c(14,16,16,20,4)
+depth <- c(0.025,0.05,.1,.2,.4)
+
+plothourdepthdf <- data.frame(depth,maxtempat)
+p <- ggplot(data = plothourdepthdf, aes(x = depth, y = maxtempat)) +
+            geom_point()
+p
+```
+#Very odd plot
+
+# try with hour start at 0
+#TODO - use -  blaygpfp_melt df
+
+
+
+
 Vertical soil temperatures at 0435, 0835, 1235,1635,2035 and 0035
 ```{r}
 library(lubridate)
