@@ -68,7 +68,7 @@ a_b = -g/T_v ( \delta T_v /\delta z + \Gamma) \Delta z \\
 \delta \Theta/\delta z
  \cong \delta T/\delta z + \Gamma \\
  Hence,\\
-a_b \cong - (g/T_v) (\delta\Theta_v/\delta z)\Delta z
+a_b \cong - (g/T_v) (\delta\Theta_v/\delta z)\Delta z\\
 
 
 
