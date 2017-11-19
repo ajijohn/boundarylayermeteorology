@@ -140,12 +140,10 @@ vt7adf %>% ggplot() + aes(vptemperature7K,heightq7) + geom_line() + xlab("Virtua
 
 ```{r}
 
-# Convert to Kelvin
-# Add virtual potential temperature
-vptemperature7K <- vtemperature7K/pi
-vptemperature7Kr <- (temperature7K*(1+(0.61*(specifichumidity7/1000))))/pi
-vt7adf <- data.frame(heightq7,pressureq7,temperature7,specifichumidity7,temperature7K,vtemperature7K,vptemperature7K,vptemperature7Kr)
 
-vt7adf %>% ggplot() + aes(vptemperature7Kr,heightq7) + geom_line()+ xlab("Virtual Potential Temperature") +
- ylab("Height(m)") + ggtitle("Tvp for various heights")
+# Compare virtual temperature and virtual potential temperature
+vt7adf %>% ggplot() + geom_line(aes(vtemperature7K,heightq7,color="Virtual"))+
+  geom_line(aes(vptemperature7K,heightq7,color="Potential"))  +
+  xlab("Temperature(K)") + labs(colour = "") +
+ ylab("Height(m)") + ggtitle("Tvp and Tv for various heights")
 ```
