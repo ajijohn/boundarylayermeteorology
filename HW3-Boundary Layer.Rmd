@@ -79,7 +79,7 @@ $$
 ```{r}
 
 library(ggplot2)
-
+library(dplyr)
 
 
 ```
@@ -113,12 +113,39 @@ Virtual temperature is the temperature which the dry air would have if its press
 
 # Convert to Kelvin
 temperature7K <- temperature7 + 273.2
-vtemperature7K <- temperature7K*(1+0.61*specifichumidity7)
+vtemperature7K <- temperature7K*(1+(0.61*(specifichumidity7/1000)))
 
+vt7adf <- data.frame(heightq7,pressureq7,temperature7,specifichumidity7,temperature7K,vtemperature7K)
 
-
+vt7adf %>% ggplot() + aes(vtemperature7K,heightq7) + geom_line() + xlab("Virtual Temperature(K)") +
+  ylab("Height(m)") + ggtitle("Tv for various heights")
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+7(b) Calculate and plot virtual potential temperature as a function of height.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
+```{r}
+
+# Convert to Kelvin
+# Add virtual potential temperature
+ptemperature7K <- temperature7K*((1000/pressureq7)^0.286)
+vptemperature7K <- ptemperature7K*(1+(0.61*(specifichumidity7/1000)))
+vt7adf <- data.frame(heightq7,pressureq7,temperature7,specifichumidity7,temperature7K,vtemperature7K,ptemperature7K,vptemperature7K)
+
+vt7adf %>% ggplot() + aes(vptemperature7K,heightq7) + geom_line() + xlab("Virtual Potential Temperature") +
+  ylab("Height(m)") + ggtitle("Tvp for various heights")
+```
+
+
+
+
+```{r}
+
+# Convert to Kelvin
+# Add virtual potential temperature
+vptemperature7K <- vtemperature7K/pi
+vptemperature7Kr <- (temperature7K*(1+(0.61*(specifichumidity7/1000))))/pi
+vt7adf <- data.frame(heightq7,pressureq7,temperature7,specifichumidity7,temperature7K,vtemperature7K,vptemperature7K,vptemperature7Kr)
+
+vt7adf %>% ggplot() + aes(vptemperature7Kr,heightq7) + geom_line()+ xlab("Virtual Potential Temperature") +
+ ylab("Height(m)") + ggtitle("Tvp for various heights")
+```
