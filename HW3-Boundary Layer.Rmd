@@ -1,6 +1,10 @@
 ---
 title: "R Notebook - For HW 3 - Boundary Layer"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
 ---
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook for exploring temperature and humdity in boundary layer. When you execute code within the notebook, the results appear beneath the code. 
@@ -13,10 +17,8 @@ $$
 a_b = -(g/T_v) (T_v-T_{vp})
 $$
 Answer
-$$
 
-\begin{aligned}
-\text{Buyoancy (acceleration of air parcel)}
+$$
 a_b = ((\rho - \rho_p)/\rho_p) * g\\
 \\
 \text{Density of the environment }\\
@@ -40,13 +42,16 @@ Hence,\\
 
 a_b = -(g/T_v) (T_v-T_{vp})
 
-\end{aligned}
+
 $$
+
+
+
 
 5(b) Considering a small vertical displacement, $\Delta z$, from the equilibrium position of the parcel show that
 
-$$
 
+$$
 a_b \cong - (g/T_v) (\delta\Theta_v/\delta z)\Delta z
 $$
 We apply the local static stability concept
@@ -70,10 +75,47 @@ a_b = -g/T_v ( \delta T_v /\delta z + \Gamma) \Delta z \\
  Hence,\\
 a_b \cong - (g/T_v) (\delta\Theta_v/\delta z)\Delta z\\
 
-
-
 $$
 ```{r}
+
+library(ggplot2)
+
+
+
+```
+Q7
+```{r}
+
+#meters
+heightq7 <- c(1.5,50,100,150,200,300,400,500,550,600,650,700,750,800,850,900,1000)
+#in mb
+pressureq7 <- c(1013,1007,1001,995,989,977,965,954,948,942,936,931,925,919,914,908,897)
+#in deg C
+temperature7 <- c(11.8,10.9,10.1,9.6,9.2,8.4,7.4,6.4,6.0,5.6,5.1,4.9,4.9,4.9,5.0,5.0,4.8)
+#in g/Kg
+specifichumidity7 <- c(6.5,6.1,5.8,5.6,5.5,5.3,5.1,4.9,4.9,4.8,4.7,4.6,4.5,4.5,4.5,4.5,4.4)
+
+length(heightq7)==length(pressureq7)
+length(temperature7)==length(specifichumidity7)
+
+
+
+```
+
+Q7.a) Calculate and plot virtual temperature as a function of height
+
+$$
+T_v = (1+ 0.61*  Q) T
+
+$$
+Virtual temperature is the temperature which the dry air would have if its pressure and density were equal to those of the moist air.
+```{r}
+
+# Convert to Kelvin
+temperature7K <- temperature7 + 273.2
+vtemperature7K <- temperature7K*(1+0.61*specifichumidity7)
+
+
 
 ```
 
