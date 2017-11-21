@@ -117,8 +117,10 @@ vtemperature7K <- temperature7K*(1+(0.61*(specifichumidity7/1000)))
 
 vt7adf <- data.frame(heightq7,pressureq7,temperature7,specifichumidity7,temperature7K,vtemperature7K)
 
-vt7adf %>% ggplot() + aes(vtemperature7K,heightq7) + geom_line() + xlab("Virtual Temperature(K)") +
-  ylab("Height(m)") + ggtitle("Tv for various heights")
+#vt7adf %>% ggplot() + aes(vtemperature7K,heightq7) + geom_line() + xlab("Virtual Temperature(K)") +
+#  ylab("Height(m)") + ggtitle("Tv for various heights")
+
+plot(vt7adf$vtemperature7K,vt7adf$heightq7,type = "b", col = "red", lwd = 3,xlab = "Virtual Temperature(K)", ylab = "Height(m)")
 ```
 
 7(b) Calculate and plot virtual potential temperature as a function of height.
@@ -131,8 +133,10 @@ ptemperature7K <- temperature7K*((1000/pressureq7)^0.286)
 vptemperature7K <- ptemperature7K*(1+(0.61*(specifichumidity7/1000)))
 vt7adf <- data.frame(heightq7,pressureq7,temperature7,specifichumidity7,temperature7K,vtemperature7K,ptemperature7K,vptemperature7K)
 
-vt7adf %>% ggplot() + aes(vptemperature7K,heightq7) + geom_line() + xlab("Virtual Potential Temperature") +
-  ylab("Height(m)") + ggtitle("Tvp for various heights")
+#vt7adf %>% ggplot() + aes(vptemperature7K,heightq7) + geom_line() + xlab("Virtual Potential Temperature") +
+#  ylab("Height(m)") + ggtitle("Tvp for various heights")
+
+b7b <- plot(vt7adf$vptemperature7K,vt7adf$heightq7,type = "b", col = "red", lwd = 3,xlab = "Virtual Potential Temperature", ylab = "Height(m)")
 ```
 
 
