@@ -1,0 +1,41 @@
+---
+title: "R Notebook - For HW 4 - Boundary Layer"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. It explores the wind distribution in the PBL.
+
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+```
+
+Q3. Following measurement of mean winds and temperature were made from the 200m mast at Cabauw in The Netherlands on a September night.
+```{r}
+#meters
+heightq3 <- c(5,10,20,40,80,120,160,200)
+#wind speed (m/s)
+windspeed3 <- c(2.2,2.7,3.5,5.4,8.2,9.1,8.7,7.8)
+#wind direction (deg)
+winddirection3 <- c(194,194,202,217,234,240,246,250)
+#Temperature
+temperature3 <- c(8.58,8.81,9.08,10.15,12.19,12.96,12.86,12.63)
+
+length(heightq3)==length(windspeed3)
+length(winddirection3)==length(temperature3)
+
+
+```
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
