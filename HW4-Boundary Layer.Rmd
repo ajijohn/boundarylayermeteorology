@@ -75,3 +75,31 @@ Virtual Potential temperature
 ```{r}
 wp33 <- plot(wp3df$vptemperature3K,wp3df$height3,type = "b", col = "red", lwd = 3,xlab = "Virtual Potential Temperature", ylab = "Height(m)")
 ```
+
+Calculate and plot wind components
+
+```{r}
+
+u3 <- windspeed3 * cos(270-  winddirection3)
+v3 <- windspeed3 * sin(270-  winddirection3)
+wp3df <- data.frame(height3,height3scaled,windspeed3,winddirection3,temperature3,temperature3k,vtemperature3K,ptemperature3K,vtemperature3K,ptemperature3K,vptemperature3K,u3,v3)
+
+wp33 <- plot(wp3df$v3,wp3df$height3,type = "b", col = "red", lwd = 3,lty= 2,xlab = "V(m/sec)     U(m/sec)       ", ylab = "Height Z (m)") + title("Profiles of mean wind components") + lines(wp3df$u3,wp3df$height3,type = "b", lwd = 3,col="green") 
+
+```
+Calculate and plot wind components (Classy)
+
+```{r}
+plot(wp3df$v3,wp3df$height3,type="b",lwd=2,
+xaxt="n",ylim=c(0,200),xlim=c(-15,15),col="black",
+xlab="Wind Components",ylab="Height (z)",
+main="Observed wind component profiles")
+axis(1,at=round(min(wp3df$v3)):max(wp3df$v3))
+lines(wp3df$u3,wp3df$height3,col="red",type="b",lwd=2)
+legend("topright",legend=c("V","U"),
+lty=1,lwd=2,pch=21,col=c("black","red"),
+ncol=2,bty="n",cex=0.8,
+text.col=c("black","red"),
+inset=0.01)
+
+```
