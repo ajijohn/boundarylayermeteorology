@@ -82,7 +82,9 @@ Calculate and plot wind components
 
 u3 <- windspeed3 * cos(270-  winddirection3)
 v3 <- windspeed3 * sin(270-  winddirection3)
-wp3df <- data.frame(height3,height3scaled,windspeed3,winddirection3,temperature3,temperature3k,vtemperature3K,ptemperature3K,vtemperature3K,ptemperature3K,vptemperature3K,u3,v3)
+geographic_wd <- 270-  winddirection3
+
+wp3df <- data.frame(height3,height3scaled,windspeed3,winddirection3,temperature3,temperature3k,vtemperature3K,ptemperature3K,vtemperature3K,ptemperature3K,vptemperature3K,u3,v3,geographic_wd)
 
 wp33 <- plot(wp3df$v3,wp3df$height3,type = "b", col = "red", lwd = 3,lty= 2,xlab = "V(m/sec)     U(m/sec)       ", ylab = "Height Z (m)") + title("Profiles of mean wind components") + lines(wp3df$u3,wp3df$height3,type = "b", lwd = 3,col="green") 
 
@@ -101,5 +103,56 @@ lty=1,lwd=2,pch=21,col=c("black","red"),
 ncol=2,bty="n",cex=0.8,
 text.col=c("black","red"),
 inset=0.01)
+
+```
+Plot hodographs
+```{r}
+plot(wp3df$u3,wp3df$v3,type="b",lwd=2,
+xlab="U(m/s)",ylab="V(m/s)",
+main="Wind hodographs")
+axis(1,at=round(min(wp3df$v3)):max(wp3df$v3))
+axis(2,at=round(min(wp3df$v3)):max(wp3df$v3))
+axis(3,at=round(min(wp3df$v3)):max(wp3df$v3))
+axis(4,at=round(min(wp3df$v3)):max(wp3df$v3))
+legend("topright",legend=c("U/V"),
+lty=1,lwd=2,pch=21,col=c("black"),
+ncol=2,bty="n",cex=0.8,
+text.col=c("black"),
+inset=0.01)
+grid (NULL,NULL, lty = 3, col = "cornsilk2")  
+```
+
+
+Q4. using the wind component, and potential temperature profiles of the previous problem, determine the magnitude of wind shear, potential temperature gradient, and Richardson number at the heights of 7.5,15,30,60,100,140, and 180m.
+
+Magnitude of wind shear os the 'V' component at the height.
+```{r}
+#to calculate at 7.5, we use the 'V' at 5 m
+
+#Apply power law
+vat5<- 2.2
+vat7dot5 <- vat5  * (7.5/5)^0.16
+ # At 7.5m, it is - 2.347455
+#Potential temperature gradient
+
+# We know potentital temperature at 5m is  282.8973
+# and Horizontal temperature gradient is -2.69 * 10^-5 K/m
+
+
+```
+
+Q4.b Plot Ri as a function of height and indicate the probable top of the PBL based on the maximum of the Ri profile
+```{r}
+#Ri is given by
+
+
+#Ri = g/Tv * (dvp/dz) * |dV/dz|^-2
+
+
+vatSurface <- 5.94 * sin(270-263)
+pressureq7 <- 1000
+# Add virtual potential temperature
+ptatSurface <- 281.78*((1000/pressureq7)^0.286)
+#Calculate Virtual temperature gradient 
 
 ```
