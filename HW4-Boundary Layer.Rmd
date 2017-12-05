@@ -160,3 +160,21 @@ ptatSurface <- 281.78*((1000/pressureq7)^0.286)
 #Calculate Virtual temperature gradient 
 
 ```
+
+Plotting the Ri by height 
+
+```{r}
+heights_ri <- c(7.5,15,30,60,100,140,180)
+ri <- c(0.19,.20,.26,.43,2.5,2.5,0.35)
+
+plot(ri,heights_ri,type="b",lwd=2,
+xlab="Ri",ylab="Height(m)",
+main="Ri profile by height")
+legend("topright",legend=c("U/V"),
+lty=1,lwd=2,pch=21,col=c("black"),
+ncol=2,bty="n",cex=0.8,
+text.col=c("black"),
+inset=0.01)
+grid (NULL,NULL, lty = 3, col = "cornsilk2")  
+
+```
