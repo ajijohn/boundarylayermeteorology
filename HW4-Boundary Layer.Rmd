@@ -1,6 +1,9 @@
 ---
 title: "R Notebook - For HW 4 - Boundary Layer"
-output: html_notebook
+output:
+  html_notebook: default
+  pdf_document: default
+  word_document: default
 ---
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. It explores the wind distribution in the PBL.
@@ -80,9 +83,10 @@ Calculate and plot wind components
 
 ```{r}
 
-u3 <- windspeed3 * cos(270-  winddirection3)
-v3 <- windspeed3 * sin(270-  winddirection3)
-geographic_wd <- 270-  winddirection3
+winddirection3r <- winddirection3* pi/180
+u3 <- windspeed3 * cos((270* pi/180)-winddirection3r)
+v3 <- windspeed3 * sin((270* pi/180)-  winddirection3r)
+geographic_wd <- (270* pi/180)-  winddirection3r
 
 wp3df <- data.frame(height3,height3scaled,windspeed3,winddirection3,temperature3,temperature3k,vtemperature3K,ptemperature3K,vtemperature3K,ptemperature3K,vptemperature3K,u3,v3,geographic_wd)
 
